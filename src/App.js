@@ -250,7 +250,7 @@ useEffect(() => {
   path="/"
   element={
     <>
-      {searchText.trim() === "" && (
+                                             {searchText.trim() !== "" && (
 
         <>
           {/* Main Section */}
