@@ -143,11 +143,9 @@ useEffect(() => {
       const data = await res.json();
 
       // ✅ SAFE CHECK
-   if (data && Array.isArray(data.products)) {
-  setFilteredProducts(data.products);
-} else {
-  setFilteredProducts([]);
-}
+  setFilteredProducts(
+  Array.isArray(data?.products) ? data.products : []
+);
 
     } catch (error) {
       console.log("Search error:", error); // 👈 DEBUG
