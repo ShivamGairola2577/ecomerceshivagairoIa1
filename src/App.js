@@ -330,8 +330,9 @@ useEffect(() => {
       <h3 style={{ gridColumn: "1/-1" }}>Searching...</h3>
     ) : filteredProducts.length === 0 ? (
       <h3 style={{ gridColumn: "1/-1" }}>No products found ❌</h3>
-    ) : (
-      filteredProducts.map((product) => (
+  ) : (
+  Array.isArray(filteredProducts) &&
+  filteredProducts.map((product) => (
         <div
           key={product.id}
           onClick={() => setSelectedProduct(product)}   // ✅ CLICK ADDED
