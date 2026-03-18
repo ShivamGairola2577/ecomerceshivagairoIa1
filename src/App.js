@@ -326,7 +326,7 @@ useEffect(() => {
   >
     {searchLoading ? (
       <h3 style={{ gridColumn: "1/-1" }}>Searching...</h3>
-    ) : filteredProducts.length === 0 ? (
+    ) : !Array.isArray(filteredProducts) || filteredProducts.length === 0 ? (
       <h3 style={{ gridColumn: "1/-1" }}>No products found ❌</h3>
   ) : (
 (Array.isArray(filteredProducts) ? filteredProducts : []).map((product) => (
