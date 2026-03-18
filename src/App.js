@@ -143,7 +143,11 @@ useEffect(() => {
       const data = await res.json();
 
       // ✅ SAFE CHECK
-     setFilteredProducts(data.products || []);
+   if (data && Array.isArray(data.products)) {
+  setFilteredProducts(data.products);
+} else {
+  setFilteredProducts([]);
+}
 
     } catch (error) {
       console.log("Search error:", error); // 👈 DEBUG
@@ -246,7 +250,7 @@ useEffect(() => {
   path="/"
   element={
     <>
-                                             {searchText.trim() !== "" && (
+                                            {searchText.trim() === "" && (
 
         <>
           {/* Main Section */}
