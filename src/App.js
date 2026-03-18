@@ -120,7 +120,7 @@ useEffect(() => {
 
   const delay = setTimeout(async () => {
 
-    if (searchText.trim() === "") {
+    if (!searchText || searchText.trim() === "") {
       setFilteredProducts([]);
       return;
     }
@@ -128,16 +128,29 @@ useEffect(() => {
     setSearchLoading(true);
 
     try {
-    const res = await fetch(
-  `https://ecomercebackand1shivam.onrender.com/search?query=${searchText}`,
-  {
-    credentials: "include"
-  }
-);
+      const res = await fetch(
+        `https://ecomercebackand1shivam.onrender.com/search?query=${searchText}`,
+        {
+          credentials: "include"
+        }
+      );
+
+      // ✅ IMPORTANT FIX
+      if (!res.ok) {
+        throw new Error("Server not responding");
+      }
+
       const data = await res.json();
-      setFilteredProducts(data);
+
+      // ✅ SAFE CHECK
+      if (Array.isArray(data)) {
+        setFilteredProducts(data);
+      } else {
+        setFilteredProducts([]);
+      }
 
     } catch (error) {
+      console.log("Search error:", error); // 👈 DEBUG
       setFilteredProducts([]);
     }
 
