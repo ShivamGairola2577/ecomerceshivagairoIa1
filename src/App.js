@@ -40,7 +40,8 @@ function CategorySection({ title, category, setSelectedProduct }) {
           width: "max-content",
           animation: "scroll 30s linear infinite"
         }}>
-          {[...items, ...items].map((item, index) => (
+         {Array.isArray(items) &&
+  [...items, ...items].map((item, index) => (
             <div
               key={index}
               style={{ marginRight: "20px", cursor: "pointer" }}
