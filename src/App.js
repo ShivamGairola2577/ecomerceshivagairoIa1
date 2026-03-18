@@ -40,8 +40,7 @@ function CategorySection({ title, category, setSelectedProduct }) {
           width: "max-content",
           animation: "scroll 30s linear infinite"
         }}>
-         {Array.isArray(items) &&
-  [...items, ...items].map((item, index) => (
+         {(Array.isArray(items) ? items : []).concat(Array.isArray(items) ? items : []).map((item, index) => (
             <div
               key={index}
               style={{ marginRight: "20px", cursor: "pointer" }}
@@ -332,8 +331,7 @@ useEffect(() => {
     ) : filteredProducts.length === 0 ? (
       <h3 style={{ gridColumn: "1/-1" }}>No products found ❌</h3>
   ) : (
-  Array.isArray(filteredProducts) &&
-  filteredProducts.map((product) => (
+(Array.isArray(filteredProducts) ? filteredProducts : []).map((product) => (
         <div
           key={product.id}
           onClick={() => setSelectedProduct(product)}   // ✅ CLICK ADDED
