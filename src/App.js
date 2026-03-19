@@ -101,6 +101,13 @@ const [orderSuccess, setOrderSuccess] = useState(false);
 
 
 // 👇 ADD THIS HERE
+  useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("login") === "success") {
+    window.location.replace("/ecomerceshivagairola1/#/profile");
+  }
+}, []);
 useEffect(() => {
   fetch("https://ecomercebackand1shivam.onrender.com/current-user", {
     credentials: "include"
